@@ -65,7 +65,7 @@ public class Loekker {
 			sum = sum + i;
 			i = i + 2;
 		}
-		
+
 		return sum;
 	}
 
@@ -74,10 +74,10 @@ public class Loekker {
 		int sum = 0;
 		int i = 1;
 		while (i <= 100) {
-			sum = sum + (i * i); 
+			sum = sum + (i * i);
 			i++;
 		}
-		
+
 		return sum;
 	}
 
@@ -90,20 +90,19 @@ public class Loekker {
 			System.out.println(power);
 			i++;
 		}
-			
+
 	}
 
 	public int sumOdd(int a, int b) {
 		// TODO Exercise E6.1d
 		int sum = 0;
-		
 
-			while (a <= b){
-				if (a % 2 != 0) {
+		while (a <= b) {
+			if (a % 2 != 0) {
 				sum = sum + a;
-				}
-				a++;
 			}
+			a++;
+		}
 		return sum;
 	}
 
@@ -112,12 +111,12 @@ public class Loekker {
 		int sum = 0;
 		while (number > 0) {
 			int digit = number % 10;
-				if (digit % 2 != 0) {
-					sum = sum + digit;
-				}
+			if (digit % 2 != 0) {
+				sum = sum + digit;
+			}
 			number = number / 10;
 		}
 		return sum;
-			
+
 	}
 }

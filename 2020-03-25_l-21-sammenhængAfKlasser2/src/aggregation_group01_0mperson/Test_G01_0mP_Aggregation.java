@@ -24,7 +24,7 @@ public class Test_G01_0mP_Aggregation {
 		// After: g2 -- p1, p2
 		// Please note, that p1 can't be connected to 2 groups.
 
-		//g2.addPerson(p1);
+		// g2.addPerson(p1);
 		// or
 		p1.setGroup(g2);
 
@@ -37,7 +37,7 @@ public class Test_G01_0mP_Aggregation {
 
 		// Before: g2 -- p1 and p2
 		// After: g2 -- p2
-		//g2.removePerson(p1);
+		// g2.removePerson(p1);
 		// or
 		p1.setGroup(null);
 

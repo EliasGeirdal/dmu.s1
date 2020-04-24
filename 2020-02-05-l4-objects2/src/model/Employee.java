@@ -18,7 +18,8 @@ public class Employee {
 	/**
 	 * Constructor, når den ansatte oprettes, skal den have et navn. Ved oprettelse
 	 * er den ansatte en trainee
-	 * @param name skal indeholde string med fornavn
+	 * 
+	 * @param name     skal indeholde string med fornavn
 	 * @param lastname skal indeholde...
 	 */
 	public Employee(String inputName, String lastname, int age) {
@@ -29,7 +30,6 @@ public class Employee {
 	}
 
 	// den ansattes navn kaldes ved et setLastname metoden
-
 
 	public void setLastname(String lastname) {
 		this.lastname = lastname;

@@ -29,8 +29,7 @@ public class Group {
 	}
 
 	/**
-	 * Adds the person to this group,
-	 * if they aren't connected
+	 * Adds the person to this group, if they aren't connected
 	 */
 	public void addPerson(Person person) {
 		if (!persons.contains(person)) {
@@ -40,8 +39,7 @@ public class Group {
 	}
 
 	/**
-	 * Removes the person from this group,
-	 * if they are connected.
+	 * Removes the person from this group, if they are connected.
 	 */
 	public void removePerson(Person person) {
 		if (persons.contains(person)) {

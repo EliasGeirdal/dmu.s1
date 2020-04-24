@@ -10,8 +10,6 @@ public class PrimeApp {
 		System.out.println("Enter a number");
 		int number = in.nextInt();
 		p.primTal(number);
-		
-		
 
 		in.close();
 

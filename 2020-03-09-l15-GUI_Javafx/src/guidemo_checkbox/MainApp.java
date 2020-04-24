@@ -11,61 +11,61 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
+	public static void main(String[] args) {
+		Application.launch(args);
+	}
 
-    @Override
-    public void start(Stage stage) {
-        stage.setTitle("Demo CheckBox");
-        GridPane pane = new GridPane();
-        this.initContent(pane);
+	@Override
+	public void start(Stage stage) {
+		stage.setTitle("Demo CheckBox");
+		GridPane pane = new GridPane();
+		this.initContent(pane);
 
-        Scene scene = new Scene(pane);
-        stage.setScene(scene);
-        stage.show();
-    }
+		Scene scene = new Scene(pane);
+		stage.setScene(scene);
+		stage.show();
+	}
 
-    // -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
 
-    private final TextField txfName = new TextField();
+	private final TextField txfName = new TextField();
 
-    private void initContent(GridPane pane) {
-        pane.setGridLinesVisible(false);
+	private void initContent(GridPane pane) {
+		pane.setGridLinesVisible(false);
 
-        pane.setPadding(new Insets(20));
-        pane.setHgap(20);
-        pane.setVgap(10);
+		pane.setPadding(new Insets(20));
+		pane.setHgap(20);
+		pane.setVgap(10);
 
-        Label lblName = new Label("Name:");
-        pane.add(lblName, 0, 0);
+		Label lblName = new Label("Name:");
+		pane.add(lblName, 0, 0);
 
-        pane.add(txfName, 1, 0);
-        txfName.setText("Mikael");
-        txfName.setEditable(true);
+		pane.add(txfName, 1, 0);
+		txfName.setText("Mikael");
+		txfName.setEditable(true);
 
-        // CheckBox to indicate upper / lower case
-        CheckBox checkBox = new CheckBox();
-        checkBox.setText("Upper case");
-        pane.add(checkBox, 0, 1);
-        checkBox.setOnAction(event -> {
-            if (checkBox.isSelected()) {
-                this.upperCaseAction();
-            } else {
-                this.lowerCaseAction();
-            }
-        });
-    }
+		// CheckBox to indicate upper / lower case
+		CheckBox checkBox = new CheckBox();
+		checkBox.setText("Upper case");
+		pane.add(checkBox, 0, 1);
+		checkBox.setOnAction(event -> {
+			if (checkBox.isSelected()) {
+				this.upperCaseAction();
+			} else {
+				this.lowerCaseAction();
+			}
+		});
+	}
 
-    // -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
 
-    private void upperCaseAction() {
-        String name = txfName.getText().trim();
-        txfName.setText(name.toUpperCase());
-    }
+	private void upperCaseAction() {
+		String name = txfName.getText().trim();
+		txfName.setText(name.toUpperCase());
+	}
 
-    private void lowerCaseAction() {
-        String name = txfName.getText().trim();
-        txfName.setText(name.toLowerCase());
-    }
+	private void lowerCaseAction() {
+		String name = txfName.getText().trim();
+		txfName.setText(name.toLowerCase());
+	}
 }

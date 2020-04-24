@@ -6,8 +6,7 @@ public class Examples {
 		// TODO Auto-generated method stub
 		String river = "mississipi";
 		System.out.println(river.replace("issipi", "our"));
-				
- 
+
 	}
 
 }

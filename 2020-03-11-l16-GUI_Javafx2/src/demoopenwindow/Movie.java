@@ -1,33 +1,33 @@
 package demoopenwindow;
 
 public class Movie {
-    private String title;
-    private String actor;
+	private String title;
+	private String actor;
 
-    public Movie(String title, String actor) {
-        super();
-        this.title = title;
-        this.actor = actor;
-    }
+	public Movie(String title, String actor) {
+		super();
+		this.title = title;
+		this.actor = actor;
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
+	public void setTitle(String title) {
+		this.title = title;
+	}
 
-    public String getActor() {
-        return actor;
-    }
+	public String getActor() {
+		return actor;
+	}
 
-    public void setActor(String actor) {
-        this.actor = actor;
-    }
+	public void setActor(String actor) {
+		this.actor = actor;
+	}
 
-    @Override
-    public String toString() {
-        return title + " " + actor;
-    }
+	@Override
+	public String toString() {
+		return title + " " + actor;
+	}
 }

@@ -62,11 +62,11 @@ public class Child {
 			return "tumbling girls";
 		else if (age >= 8 && !boy)
 			return "springy girls";
-		else if (age < 8 && boy) 
+		else if (age < 8 && boy)
 			return "young cubs";
-		else if (age >= 8 && boy) 
+		else if (age >= 8 && boy)
 			return "Cool boys";
-		else 
+		else
 			return "Error: not applicable";
 	}
 

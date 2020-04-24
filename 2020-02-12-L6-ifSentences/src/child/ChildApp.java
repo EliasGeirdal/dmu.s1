@@ -17,7 +17,6 @@ public class ChildApp {
 		System.out.println(c3.team());
 		System.out.println(c3.team());
 		System.out.println(c3.team());
-		
 
 	}
 

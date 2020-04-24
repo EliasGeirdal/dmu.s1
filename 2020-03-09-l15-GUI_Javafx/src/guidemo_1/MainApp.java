@@ -34,9 +34,9 @@ public class MainApp extends Application {
 
 		// set padding of the pane
 		pane.setPadding(new Insets(20));
-		// set horizontal gap between components 
+		// set horizontal gap between components
 		pane.setHgap(10);
-		// set vertical gap between components 
+		// set vertical gap between components
 		pane.setVgap(10);
 
 		// add a label to the pane (at col=0, row=0)

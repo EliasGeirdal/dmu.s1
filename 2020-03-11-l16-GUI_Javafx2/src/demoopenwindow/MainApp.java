@@ -11,58 +11,58 @@ import javafx.stage.Stage;
 
 public class MainApp extends Application {
 
-    public static void main(String[] args) {
-        Application.launch(args);
-    }
+	public static void main(String[] args) {
+		Application.launch(args);
+	}
 
-    @Override
-    public void start(Stage stage) {
-        stage.setTitle("Gui Demo input window");
-        GridPane pane = new GridPane();
-        this.initContent(pane);
+	@Override
+	public void start(Stage stage) {
+		stage.setTitle("Gui Demo input window");
+		GridPane pane = new GridPane();
+		this.initContent(pane);
 
-        Scene scene = new Scene(pane);
-        stage.setScene(scene);
-        stage.show();
+		Scene scene = new Scene(pane);
+		stage.setScene(scene);
+		stage.show();
 
-        movieWindow = new MovieInputWindow("Create a movie", stage);
-    }
+		movieWindow = new MovieInputWindow("Create a movie", stage);
+	}
 
-    // -------------------------------------------------------------------------
+	// -------------------------------------------------------------------------
 
-    private final TextField txfResult = new TextField();
-    private MovieInputWindow movieWindow;
+	private final TextField txfResult = new TextField();
+	private MovieInputWindow movieWindow;
 
-    private void initContent(GridPane pane) {
-        pane.setGridLinesVisible(false);
-        pane.setPadding(new Insets(20));
-        pane.setHgap(10);
-        pane.setVgap(10);
+	private void initContent(GridPane pane) {
+		pane.setGridLinesVisible(false);
+		pane.setPadding(new Insets(20));
+		pane.setHgap(10);
+		pane.setVgap(10);
 
-        Label lblName = new Label("Movie:");
-        pane.add(lblName, 0, 0);
+		Label lblName = new Label("Movie:");
+		pane.add(lblName, 0, 0);
 
-        pane.add(txfResult, 1, 0, 2, 1);
-        txfResult.setEditable(false);
+		pane.add(txfResult, 1, 0, 2, 1);
+		txfResult.setEditable(false);
 
-        Button btnCreateMovie = new Button("Create movie");
-        pane.add(btnCreateMovie, 1, 1);
-        GridPane.setMargin(btnCreateMovie, new Insets(10, 10, 0, 10));
-        btnCreateMovie.setOnAction(event -> this.createMovieAction());
+		Button btnCreateMovie = new Button("Create movie");
+		pane.add(btnCreateMovie, 1, 1);
+		GridPane.setMargin(btnCreateMovie, new Insets(10, 10, 0, 10));
+		btnCreateMovie.setOnAction(event -> this.createMovieAction());
 
-    }
+	}
 
-    // -----------------------------------------------------
-    // Button action
+	// -----------------------------------------------------
+	// Button action
 
-    private void createMovieAction() {
-        movieWindow.showAndWait();
+	private void createMovieAction() {
+		movieWindow.showAndWait();
 
-        // wait for the dialog to close ...
+		// wait for the dialog to close ...
 
-        if (movieWindow.getActualMovie() != null) {
-            Movie movie = movieWindow.getActualMovie();
-            txfResult.setText(movie.toString());
-        }
-    }
+		if (movieWindow.getActualMovie() != null) {
+			Movie movie = movieWindow.getActualMovie();
+			txfResult.setText(movie.toString());
+		}
+	}
 }

@@ -263,9 +263,9 @@ public class Opgave104 extends Application {
 		v.setFill(Color.BLACK);
 		y = y + dy;
 
-	    double a = 680.5;
+		double a = 680.5;
 		double b = 420.2;
-		System.out.print(a*b);
-    
+		System.out.print(a * b);
+
 	}
 }

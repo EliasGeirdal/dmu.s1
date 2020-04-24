@@ -15,7 +15,7 @@ public class Test_G1_0mP_Composition {
 		// Before: g1 <--> p1
 		// After: No connections
 		g1.removePerson(p1);
-		// NB: GC deletes p1 
+		// NB: GC deletes p1
 
 		System.out.println("Test 2:");
 		System.out.println(!g1.getPersons().contains(p1));

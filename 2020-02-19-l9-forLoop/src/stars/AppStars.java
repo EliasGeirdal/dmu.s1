@@ -7,7 +7,7 @@ public class AppStars {
 	 */
 	public static void main(String[] args) {
 		Stars star = new Stars();
-		
+
 		star.starPictureB();
 
 	}

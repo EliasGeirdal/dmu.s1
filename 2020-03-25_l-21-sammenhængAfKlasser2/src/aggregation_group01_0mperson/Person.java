@@ -21,7 +21,7 @@ public class Person {
 	}
 
 	/**
-	 * Sets the group as this person's group, if they aren't connected. 
+	 * Sets the group as this person's group, if they aren't connected.
 	 */
 	public void setGroup(Group group) {
 		if (this.group != group) {
@@ -36,5 +36,4 @@ public class Person {
 		}
 	}
 
-	
 }

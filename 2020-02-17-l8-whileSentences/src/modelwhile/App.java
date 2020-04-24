@@ -6,7 +6,7 @@ public class App {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		   Loekker loekker = new Loekker(); 
+		Loekker loekker = new Loekker();
 		// loekker.udskriv1_10();
 		// loekker.udskriv1_10_iteration();
 		// System.out.println(loekker.summer());
@@ -16,7 +16,7 @@ public class App {
 //		   System.out.println(loekker.summerSquare());
 //		   loekker.allPowers();
 //		   System.out.println(loekker.sumOdd(7, 25));
-		   System.out.println(loekker.sumOfOddDigits(32677));
+		System.out.println(loekker.sumOfOddDigits(32677));
 
 	}
 }

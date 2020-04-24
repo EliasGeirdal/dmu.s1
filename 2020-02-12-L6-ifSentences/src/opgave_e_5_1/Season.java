@@ -45,7 +45,7 @@ public class Season {
 
 		System.out.print("Enter day: ");
 		int day = in.nextInt();
-		
+
 		// every third month changes season.
 
 		if (month == 1 || month == 2 || month == 3)
