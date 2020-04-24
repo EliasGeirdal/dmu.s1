@@ -4,15 +4,16 @@ import java.util.ArrayList;
 
 public class Deltager {
 
+	// instance variables.
 	private int id;
 	private static int idcount = 1;
 	private String fornavn, efternavn, tlf, adresse;
-	// link attributter ---- to do
-	private Firma firma; // nullable
-	private ArrayList<Ledsager> ledsagere;
-	private ArrayList<Tilmelding> tilmeldinger;
 
-	public Deltager(int id, String fornavn, String efternavn, String tlf, String adresse, Firma firma) {
+	// link variables.
+	private Firma firma; // nullable.
+	private ArrayList<Tilmelding> tilmeldinger; // tilmelding --- 1 * deltager.
+
+	public Deltager(String fornavn, String efternavn, String tlf, String adresse, Firma firma) {
 		super();
 		this.id = idcount;
 		idcount++;
@@ -20,13 +21,46 @@ public class Deltager {
 		this.efternavn = efternavn;
 		this.tlf = tlf;
 		this.adresse = adresse;
-		// link attributter
-		this.firma = firma;
-		ledsagere = new ArrayList<>();
+		this.setFirma(firma);
 		tilmeldinger = new ArrayList<>();
-
 	}
 
+	// -----------tilmelding metoder-----------------
+
+	public void addTilmelding(Tilmelding tilmelding) {
+		if (!tilmeldinger.contains(tilmelding)) {
+			tilmeldinger.add(tilmelding);
+			tilmelding.setDeltager(this);
+		}
+	}
+
+	public void removeTilmelding(Tilmelding tilmelding) {
+		if (tilmeldinger.contains(tilmelding)) {
+			tilmeldinger.remove(tilmelding);
+			tilmelding.setDeltager(null);
+		}
+	}
+
+	public ArrayList<Tilmelding> getTilmeldinger() {
+		return new ArrayList<>(tilmeldinger);
+	}
+
+	// -------firma metoder-------------------
+
+	public Firma getFirma() {
+		return firma;
+	}
+
+	/**
+	 * 
+	 * @param firma nullable parameter
+	 */
+	public void setFirma(Firma firma) {
+		if (this.firma != firma)
+			this.firma = firma;
+	}
+
+	// --------------- instance ---------------------
 	public int getId() {
 		return id;
 	}
@@ -66,4 +100,5 @@ public class Deltager {
 	public void setAdresse(String adresse) {
 		this.adresse = adresse;
 	}
+
 }

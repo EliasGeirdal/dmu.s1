@@ -1,21 +1,16 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Firma {
-
-	private String navn, tlf;
-	// link attributter
-	private ArrayList<Deltager> deltagere;
+	// instance variables.
+	private String navn, tlf, adresse;
 
 	public Firma(String navn, String tlf) {
 		super();
 		this.navn = navn;
 		this.tlf = tlf;
-		// link attributter
-		deltagere = new ArrayList<>();
 	}
 
+	// ----------------instance-----------------------
 	public String getNavn() {
 		return navn;
 	}
@@ -30,6 +25,14 @@ public class Firma {
 
 	public void setTlf(String tlf) {
 		this.tlf = tlf;
+	}
+
+	public String getAdresse() {
+		return adresse;
+	}
+
+	public void setAdresse(String adresse) {
+		this.adresse = adresse;
 	}
 
 }

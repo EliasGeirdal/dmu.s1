@@ -3,9 +3,9 @@ package model;
 import java.util.ArrayList;
 
 public class Hotel {
+	// instance variables.
 	private String navn, adresse, tlf, email;
-	// link attributter
-	private ArrayList<Tilmelding> tilmeldinger;
+	// link variables.
 	private ArrayList<Tillæg> tillæg;
 	private ArrayList<Værelse> værelser;
 
@@ -15,12 +15,34 @@ public class Hotel {
 		this.adresse = adresse;
 		this.tlf = tlf;
 		this.email = email;
-		// link attributter
-		tilmeldinger = new ArrayList<>();
 		tillæg = new ArrayList<>();
 		værelser = new ArrayList<>();
 	}
 
+	// -----------------------Tillæg-------------------
+
+	public Tillæg createTillæg(String navn, String beskrivelse, double pris) {
+		Tillæg tillæg = new Tillæg(navn, beskrivelse, pris);
+		this.tillæg.add(tillæg);
+		return tillæg;
+	}
+
+	public ArrayList<Tillæg> getTillæg() {
+		return new ArrayList<>(tillæg);
+	}
+
+	// --------------------værelser------------------------------------
+	public Værelse createVærelse(String type, double pris, int sengepladser) {
+		Værelse værelse = new Værelse(type, pris, sengepladser);
+		værelser.add(værelse);
+		return værelse;
+	}
+
+	public ArrayList<Værelse> getVærelse() {
+		return new ArrayList<>(værelser);
+	}
+
+	// --------------instance----------------------
 	public String getNavn() {
 		return navn;
 	}
