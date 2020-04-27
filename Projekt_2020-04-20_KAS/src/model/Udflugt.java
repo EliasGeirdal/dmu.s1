@@ -8,8 +8,8 @@ public class Udflugt {
 	private String navn, adresse, beskrivelse;
 	private double pris;
 	private LocalDateTime startDato, slutDato;
-	// link variables
-	private ArrayList<Ledsager> ledsagere; // ledsager --- ** udflugt.
+	// link instance variables
+	private ArrayList<Ledsager> ledsagere;
 
 	public Udflugt(String navn, String adresse, String beskrivelse, double pris, LocalDateTime startDato,
 			LocalDateTime slutDato) {
@@ -32,6 +32,13 @@ public class Udflugt {
 		if (!ledsagere.contains(ledsager)) {
 			ledsagere.add(ledsager);
 			ledsager.addUdflugt(this);
+		}
+	}
+
+	public void removeLedsager(Ledsager ledsager) {
+		if (ledsagere.contains(ledsager)) {
+			ledsagere.add(ledsager);
+			ledsager.removeUdflugt(this);
 		}
 	}
 

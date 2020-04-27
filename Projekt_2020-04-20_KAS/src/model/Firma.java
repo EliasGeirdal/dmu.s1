@@ -4,10 +4,11 @@ public class Firma {
 	// instance variables.
 	private String navn, tlf, adresse;
 
-	public Firma(String navn, String tlf) {
+	public Firma(String navn, String tlf, String adresse) {
 		super();
 		this.navn = navn;
 		this.tlf = tlf;
+		setAdresse(adresse);
 	}
 
 	// ----------------instance-----------------------

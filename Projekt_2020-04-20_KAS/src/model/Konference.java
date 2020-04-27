@@ -4,11 +4,11 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 public class Konference {
-
+	// Instance variables.
 	private String navn, adresse;
 	private LocalDateTime startDato, slutDato;
-	private double pris;
-	// link attributer
+	private double dagsPris;
+	// link instance variables.
 	private ArrayList<Tilmelding> tilmeldinger; // association --- 0..* tilmeldinger.
 	private ArrayList<Hotel> hoteller; // association --> * hoteller.
 	private ArrayList<Udflugt> udflugter; // composition --> * Udflugt.
@@ -19,6 +19,7 @@ public class Konference {
 		this.adresse = adresse;
 		this.startDato = startDato;
 		this.slutDato = slutDato;
+		this.dagsPris = pris;
 		// link attributter
 		tilmeldinger = new ArrayList<>();
 		hoteller = new ArrayList<>();
@@ -71,7 +72,7 @@ public class Konference {
 		return new ArrayList<>(udflugter);
 	}
 
-	// ----------alm.attributter-----------------------------------------------
+	// ----------instance-----------------------------------------------
 	public String getNavn() {
 		return navn;
 	}
@@ -104,12 +105,12 @@ public class Konference {
 		this.slutDato = slutDato;
 	}
 
-	public double getPris() {
-		return pris;
+	public double getDagspris() {
+		return dagsPris;
 	}
 
-	public void setPris(double pris) {
-		this.pris = pris;
+	public void setDagspris(double pris) {
+		this.dagsPris = pris;
 	}
 
 }

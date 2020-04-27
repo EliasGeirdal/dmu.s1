@@ -13,7 +13,7 @@ public class Deltager {
 	private Firma firma; // nullable.
 	private ArrayList<Tilmelding> tilmeldinger; // tilmelding --- 1 * deltager.
 
-	public Deltager(String fornavn, String efternavn, String tlf, String adresse, Firma firma) {
+	public Deltager(String fornavn, String efternavn, String tlf, String adresse) {
 		super();
 		this.id = idcount;
 		idcount++;
@@ -21,7 +21,6 @@ public class Deltager {
 		this.efternavn = efternavn;
 		this.tlf = tlf;
 		this.adresse = adresse;
-		this.setFirma(firma);
 		tilmeldinger = new ArrayList<>();
 	}
 

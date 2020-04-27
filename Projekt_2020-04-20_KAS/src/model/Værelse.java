@@ -3,13 +3,13 @@ package model;
 public class Værelse {
 
 	private String type;
-	private double pris;
+	private double dagspris;
 	private int sengepladser;
 
 	public Værelse(String type, double pris, int sengepladser) {
 		super();
 		this.type = type;
-		this.pris = pris;
+		this.dagspris = pris;
 		this.sengepladser = sengepladser;
 	}
 
@@ -22,11 +22,11 @@ public class Værelse {
 	}
 
 	public double getPris() {
-		return pris;
+		return dagspris;
 	}
 
 	public void setPris(double pris) {
-		this.pris = pris;
+		this.dagspris = pris;
 	}
 
 	public int getSengepladser() {

@@ -1,6 +1,7 @@
 package model;
 
 import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class Tilmelding {
@@ -9,16 +10,15 @@ public class Tilmelding {
 	private LocalDateTime ankomstDato, afrejseDato;
 	private boolean foredragsholder;
 
-	// link variables
-	private Ledsager ledsager;
+	// link instance variables
+	private Ledsager ledsager; // nullable
 	private Deltager deltager;
 	private Konference konference;
-	private Værelse værelse;
-	private ArrayList<Tillæg> tillæg;
+	private Værelse værelse; // nullable
+	private ArrayList<Tillæg> tillæg = new ArrayList<>();;
 
 	public Tilmelding(LocalDateTime ankomstDato, LocalDateTime afrejseDato, boolean foredragsholder, Deltager deltager,
 			Ledsager ledsager, Konference konference, Værelse værelse) {
-		super();
 		this.ankomstDato = ankomstDato;
 		this.afrejseDato = afrejseDato;
 		this.foredragsholder = foredragsholder;
@@ -26,7 +26,6 @@ public class Tilmelding {
 		setKonference(konference);
 		setVærelse(værelse);
 		setLedsager(ledsager);
-		tillæg = new ArrayList<>();
 	}
 
 	// ------------beregninger for priser--------------------
@@ -37,7 +36,14 @@ public class Tilmelding {
 	 * @return price for the entirety of the konference.
 	 */
 	public double beregnPris() {
-		return beregnTillægspris() + beregnKonferencepris() + værelse.getPris() + ledsager.beregnPrisForUdflugter();
+		double sum = beregnTillægspris() + beregnKonferencepris();
+		if (ledsager != null) {
+			sum += ledsager.beregnPrisForUdflugter();
+		}
+		if (værelse != null) {
+			sum += (getAntalDage() - 1) * værelse.getPris();
+		}
+		return sum;
 	}
 
 	/**
@@ -46,9 +52,9 @@ public class Tilmelding {
 	 * @return price for konference
 	 */
 	public double beregnKonferencepris() {
-		double sum = 0;
+		double sum = 0.0;
 		if (!foredragsholder) {
-			sum = konference.getPris();
+			sum = getAntalDage() * konference.getDagspris();
 		}
 		return sum;
 	}
@@ -59,17 +65,28 @@ public class Tilmelding {
 	 * @return price for tillæg.
 	 */
 	public double beregnTillægspris() {
-		double sum = 0;
+		double sum = 0.0;
 		for (Tillæg tillæg2 : tillæg) {
 			sum += tillæg2.getPris();
+		}
+		if (ledsager != null) {
+			sum *= 2;
 		}
 		return sum;
 	}
 
+	public long getAntalDage() {
+		return 1 + ChronoUnit.DAYS.between(ankomstDato, afrejseDato);
+	}
+
 	// ----------------konference metoder-----------------------
 
-	// set konference and remove this tilmelding from old konference, and add
-	// tilmelding to new konference.
+	/**
+	 * Sætter konferencen samt tilføjer tilmelding til konferencen og fjerne
+	 * tilmelding fra forrige konference.
+	 * 
+	 * @param konference konference objekt.
+	 */
 	public void setKonference(Konference konference) {
 		if (this.konference != konference) {
 			Konference oldKonference = this.konference;
@@ -88,6 +105,13 @@ public class Tilmelding {
 
 	// ------------deltager metoder-----------------------
 
+	/**
+	 * sætter deltageren som denne tilmeldingsdeltager, hvis de ikke allerede er
+	 * forbundet. Opdaterer også deltager objektet, i.e. sætter tilmelding og fjerne
+	 * tilmelding.
+	 * 
+	 * @param deltager deltager objekt.
+	 */
 	public void setDeltager(Deltager deltager) {
 		if (this.deltager != deltager) {
 			Deltager oldDeltager = this.deltager;
@@ -101,6 +125,11 @@ public class Tilmelding {
 		}
 	}
 
+	/**
+	 * returnerer deltager.
+	 * 
+	 * @return
+	 */
 	public Deltager getDeltager() {
 		return deltager;
 	}
@@ -108,9 +137,9 @@ public class Tilmelding {
 	// ---------------ledsager---------------------
 
 	/**
-	 * the ledsager associated with deltager at specific konference.
+	 * Sætter ledsageren til at tilhøre denne tilmelding.
 	 * 
-	 * @param ledsager nullable parameter
+	 * @param ledsager ledsager objekt. Nullable parameter.
 	 */
 	public void setLedsager(Ledsager ledsager) {
 		if (this.ledsager != ledsager) {
@@ -118,6 +147,11 @@ public class Tilmelding {
 		}
 	}
 
+	/**
+	 * Returnerer ledsager.
+	 * 
+	 * @return ledsager.
+	 */
 	public Ledsager getLedsager() {
 		return ledsager;
 	}

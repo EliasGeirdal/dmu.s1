@@ -5,16 +5,13 @@ import java.util.ArrayList;
 public class Ledsager {
 	// instance variable
 	private String navn;
-	// link variables
-	private Tilmelding tilmelding;
+	// instance variables.
 	private ArrayList<Udflugt> udflugter;
 
-	public Ledsager(String navn, Tilmelding tilmelding) {
-		super();
+	public Ledsager(String navn) {
 		// instance
 		this.navn = navn;
 		// link
-		this.tilmelding = tilmelding;
 		udflugter = new ArrayList<>();
 	}
 
@@ -40,17 +37,15 @@ public class Ledsager {
 		}
 	}
 
+	public void removeUdflugt(Udflugt udflugt) {
+		if (udflugter.contains(udflugt)) {
+			udflugter.add(udflugt);
+			udflugt.removeLedsager(this);
+		}
+	}
+
 	public ArrayList<Udflugt> getUdflugter() {
 		return new ArrayList<>(udflugter);
-	}
-
-	// -----------tilmelding------------------
-	public Tilmelding getTilmelding() {
-		return tilmelding;
-	}
-
-	public void setTilmelding(Tilmelding tilmelding) {
-		this.tilmelding = tilmelding;
 	}
 
 	// ----------------instance--------------------
