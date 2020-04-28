@@ -17,6 +17,8 @@ public class Storage {
 	private static ArrayList<Ledsager> ledsagere;
 	private static ArrayList<Firma> firmaer;
 
+	// test
+
 	// -----------------------tilmelding-----------------
 	public static ArrayList<Tilmelding> getTilmeldinger() {
 		return new ArrayList<>(tilmeldinger);
