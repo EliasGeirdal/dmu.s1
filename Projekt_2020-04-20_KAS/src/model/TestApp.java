@@ -79,7 +79,6 @@ public class TestApp {
 
 		System.out.println(t1.beregnPris());
 		System.out.println(t2.beregnPris());
-		System.out.println(t3.beregnTillægspris());
 		System.out.println(t3.beregnPris());
 		System.out.println(t4.beregnPris());
 

@@ -47,7 +47,7 @@ public class Storage {
 		pladser.add(plads);
 	}
 
-//	public static void removePlads(Plads plads) {
-//		pladser.remove(plads);
-//	}
+	public static void removePlads(Plads plads) {
+		pladser.remove(plads);
+	}
 }

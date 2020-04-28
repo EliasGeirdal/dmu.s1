@@ -41,7 +41,7 @@ public class Tilmelding {
 			sum += ledsager.beregnPrisForUdflugter();
 		}
 		if (værelse != null) {
-			sum += (getAntalDage() - 1) * værelse.getPris();
+			sum += (getAntalDage() - 1) * værelse.getPris(); // -1 fordi det er antal overnatninger.
 		}
 		return sum;
 	}
@@ -75,8 +75,14 @@ public class Tilmelding {
 		return sum;
 	}
 
+	/**
+	 * Antal dage deltageren er tilmeldt konferencen.
+	 * 
+	 * @return antal dage.
+	 */
 	public long getAntalDage() {
-		return 1 + ChronoUnit.DAYS.between(ankomstDato, afrejseDato);
+		return 1 + ChronoUnit.DAYS.between(ankomstDato, afrejseDato); // +1 da det er fra og med ankomst dato, samt til
+																		// og med afrejse dato.
 	}
 
 	// ----------------konference metoder-----------------------
