@@ -7,6 +7,7 @@ public class TestApp {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
+		// test
 		// Hoteller
 		Hotel h1 = new Hotel("Den Hvide Svane", "Adresse", "60 60 60 60", "hotel@hotel.dk");
 		Hotel h2 = new Hotel("Høtel Phønix", "Adresse", "60 60 60 60", "hotel@hotel.dk");
