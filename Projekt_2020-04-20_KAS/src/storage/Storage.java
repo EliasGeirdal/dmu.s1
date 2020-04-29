@@ -17,8 +17,6 @@ public class Storage {
 	private static ArrayList<Ledsager> ledsagere;
 	private static ArrayList<Firma> firmaer;
 
-	// test
-
 	// -----------------------tilmelding-----------------
 	public static ArrayList<Tilmelding> getTilmeldinger() {
 		return new ArrayList<>(tilmeldinger);
@@ -85,7 +83,7 @@ public class Storage {
 	}
 
 	// ----------------firma--------------------------
-	public static ArrayList<Firma> getFirma() {
+	public static ArrayList<Firma> getFirmaer() {
 		return new ArrayList<>(firmaer);
 	}
 
