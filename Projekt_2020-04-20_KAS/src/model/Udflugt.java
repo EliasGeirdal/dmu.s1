@@ -1,18 +1,18 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Udflugt {
 	// instance variable
 	private String navn, adresse, beskrivelse;
 	private double pris;
-	private LocalDateTime startDato, slutDato;
+	private LocalDate startDato, slutDato;
 	// link instance variables
 	private ArrayList<Ledsager> ledsagere;
 
-	public Udflugt(String navn, String adresse, String beskrivelse, double pris, LocalDateTime startDato,
-			LocalDateTime slutDato) {
+	public Udflugt(String navn, String adresse, String beskrivelse, double pris, LocalDate startDato,
+			LocalDate slutDato) {
 		super();
 		this.navn = navn;
 		this.adresse = adresse;
@@ -74,20 +74,24 @@ public class Udflugt {
 		this.pris = pris;
 	}
 
-	public LocalDateTime getStartDato() {
+	public LocalDate getStartDato() {
 		return startDato;
 	}
 
-	public void setStartDato(LocalDateTime startDato) {
+	public void setStartDato(LocalDate startDato) {
 		this.startDato = startDato;
 	}
 
-	public LocalDateTime getSlutDato() {
+	public LocalDate getSlutDato() {
 		return slutDato;
 	}
 
-	public void setSlutDato(LocalDateTime slutDato) {
+	public void setSlutDato(LocalDate slutDato) {
 		this.slutDato = slutDato;
 	}
 
+	@Override
+	public String toString() {
+		return navn + "(" + ledsagere + ")";
+	}
 }

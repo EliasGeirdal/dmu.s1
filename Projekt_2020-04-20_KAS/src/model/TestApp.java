@@ -1,6 +1,6 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class TestApp {
 
@@ -14,16 +14,16 @@ public class TestApp {
 		Hotel h3 = new Hotel("Pension Tusindfryd", "Adresse", "60 60 60 60", "hotel@hotel.dk");
 
 		// start og slut dato for konferencen
-		LocalDateTime start = LocalDateTime.of(2020, 5, 18, 12, 00);
-		LocalDateTime slut = LocalDateTime.of(2020, 5, 20, 12, 00);
+		LocalDate start = LocalDate.of(2020, 5, 18);
+		LocalDate slut = LocalDate.of(2020, 5, 20);
 
 		// konference
 		Konference k1 = new Konference("Hav og himmel", "Adresse", start, slut, 1500);
 
 		// Udflugter til konferencen.
 		Udflugt byrundtur = k1.createUdflugt("Byrundtur, Odense", "Adresse", "Beskrivelse", 125.00, start, start);
-		Udflugt egeskov = k1.createUdflugt("Egeskov", "Adresse", "Beskrivelse", 75.00,
-				LocalDateTime.of(2020, 5, 19, 12, 00), LocalDateTime.of(2020, 5, 19, 12, 00));
+		Udflugt egeskov = k1.createUdflugt("Egeskov", "Adresse", "Beskrivelse", 75.00, LocalDate.of(2020, 5, 19),
+				LocalDate.of(2020, 5, 19));
 		Udflugt trapholt = k1.createUdflugt("Trapholt Museum, Kolding", "Adresse", "Beskrivelse", 200, slut, slut);
 
 		// Værelser

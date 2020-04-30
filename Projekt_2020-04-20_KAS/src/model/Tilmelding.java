@@ -1,13 +1,13 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 
 public class Tilmelding {
 
 	// instance variables
-	private LocalDateTime ankomstDato, afrejseDato;
+	private LocalDate ankomstDato, afrejseDato;
 	private boolean foredragsholder;
 
 	// link instance variables
@@ -15,9 +15,9 @@ public class Tilmelding {
 	private Deltager deltager;
 	private Konference konference;
 	private Værelse værelse; // nullable
-	private ArrayList<Tillæg> tillæg = new ArrayList<>();;
+	private ArrayList<Tillæg> tillæg = new ArrayList<>();
 
-	public Tilmelding(LocalDateTime ankomstDato, LocalDateTime afrejseDato, boolean foredragsholder, Deltager deltager,
+	public Tilmelding(LocalDate ankomstDato, LocalDate afrejseDato, boolean foredragsholder, Deltager deltager,
 			Ledsager ledsager, Konference konference, Værelse værelse) {
 		this.ankomstDato = ankomstDato;
 		this.afrejseDato = afrejseDato;
@@ -69,6 +69,8 @@ public class Tilmelding {
 		for (Tillæg tillæg2 : tillæg) {
 			sum += tillæg2.getPris();
 		}
+		// ganger med to, da det ser ud til at ledsager også skal betale for tillæg. se
+		// test.
 		if (ledsager != null) {
 			sum *= 2;
 		}
@@ -150,6 +152,7 @@ public class Tilmelding {
 	public void setLedsager(Ledsager ledsager) {
 		if (this.ledsager != ledsager) {
 			this.ledsager = ledsager;
+			ledsager.setTilmelding(this);
 		}
 	}
 
@@ -187,19 +190,19 @@ public class Tilmelding {
 
 	// ---------------instance-------------------------
 
-	public LocalDateTime getAnkomstDato() {
+	public LocalDate getAnkomstDato() {
 		return ankomstDato;
 	}
 
-	public void setAnkomstDato(LocalDateTime ankomstDato) {
+	public void setAnkomstDato(LocalDate ankomstDato) {
 		this.ankomstDato = ankomstDato;
 	}
 
-	public LocalDateTime getAfrejseDato() {
+	public LocalDate getAfrejseDato() {
 		return afrejseDato;
 	}
 
-	public void setAfrejseDato(LocalDateTime afrejseDato) {
+	public void setAfrejseDato(LocalDate afrejseDato) {
 		this.afrejseDato = afrejseDato;
 	}
 

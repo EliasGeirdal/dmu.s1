@@ -1,19 +1,25 @@
 package model;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Konference {
+	@Override
+	public String toString() {
+		return navn;
+	}
+
 	// Instance variables.
-	private String navn, adresse;
-	private LocalDateTime startDato, slutDato;
+	private String navn;
+	private String adresse;
+	private LocalDate startDato, slutDato;
 	private double dagsPris;
 	// link instance variables.
 	private ArrayList<Tilmelding> tilmeldinger; // association --- 0..* tilmeldinger.
 	private ArrayList<Hotel> hoteller; // association --> * hoteller.
 	private ArrayList<Udflugt> udflugter; // composition --> * Udflugt.
 
-	public Konference(String navn, String adresse, LocalDateTime startDato, LocalDateTime slutDato, double pris) {
+	public Konference(String navn, String adresse, LocalDate startDato, LocalDate slutDato, double pris) {
 		super();
 		this.navn = navn;
 		this.adresse = adresse;
@@ -61,11 +67,17 @@ public class Konference {
 	}
 
 	// ---------------udflugt metoder----------------------
-	public Udflugt createUdflugt(String navn, String adresse, String beskrivelse, double pris, LocalDateTime startDato,
-			LocalDateTime slutDato) {
+	public Udflugt createUdflugt(String navn, String adresse, String beskrivelse, double pris, LocalDate startDato,
+			LocalDate slutDato) {
 		Udflugt udflugt = new Udflugt(navn, adresse, beskrivelse, pris, startDato, slutDato);
 		udflugter.add(udflugt);
 		return udflugt;
+	}
+
+	public void removeUdflugt(Udflugt udflugt) {
+		if (udflugter.contains(udflugt)) {
+			udflugter.remove(udflugt);
+		}
 	}
 
 	public ArrayList<Udflugt> getUdflugter() {
@@ -89,19 +101,19 @@ public class Konference {
 		this.adresse = adresse;
 	}
 
-	public LocalDateTime getStartDato() {
+	public LocalDate getStartDato() {
 		return startDato;
 	}
 
-	public void setStartDato(LocalDateTime startDato) {
+	public void setStartDato(LocalDate startDato) {
 		this.startDato = startDato;
 	}
 
-	public LocalDateTime getSlutDato() {
+	public LocalDate getSlutDato() {
 		return slutDato;
 	}
 
-	public void setSlutDato(LocalDateTime slutDato) {
+	public void setSlutDato(LocalDate slutDato) {
 		this.slutDato = slutDato;
 	}
 

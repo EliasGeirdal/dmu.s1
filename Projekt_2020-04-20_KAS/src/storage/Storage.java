@@ -10,12 +10,12 @@ import model.Ledsager;
 import model.Tilmelding;
 
 public class Storage {
-	private static ArrayList<Tilmelding> tilmeldinger;
-	private static ArrayList<Konference> konferencer;
-	private static ArrayList<Hotel> hoteller;
-	private static ArrayList<Deltager> deltagere;
-	private static ArrayList<Ledsager> ledsagere;
-	private static ArrayList<Firma> firmaer;
+	private static ArrayList<Tilmelding> tilmeldinger = new ArrayList<>();
+	private static ArrayList<Konference> konferencer = new ArrayList<>();
+	private static ArrayList<Hotel> hoteller = new ArrayList<>();
+	private static ArrayList<Deltager> deltagere = new ArrayList<>();
+	private static ArrayList<Ledsager> ledsagere = new ArrayList<>();
+	private static ArrayList<Firma> firmaer = new ArrayList<>();
 
 	// -----------------------tilmelding-----------------
 	public static ArrayList<Tilmelding> getTilmeldinger() {

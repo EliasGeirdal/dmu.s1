@@ -8,6 +8,7 @@ public class Hotel {
 	// link variables.
 	private ArrayList<Tillæg> tillæg;
 	private ArrayList<Værelse> værelser;
+	// added
 
 	public Hotel(String navn, String adresse, String tlf, String email) {
 		super();
@@ -33,12 +34,13 @@ public class Hotel {
 
 	// --------------------værelser------------------------------------
 	public Værelse createVærelse(String type, double pris, int sengepladser) {
-		Værelse værelse = new Værelse(type, pris, sengepladser);
+		Værelse værelse = new Værelse(type, pris, sengepladser, this);
 		værelser.add(værelse);
+//		this.værelse = værelse;
 		return værelse;
 	}
 
-	public ArrayList<Værelse> getVærelse() {
+	public ArrayList<Værelse> getVærelser() {
 		return new ArrayList<>(værelser);
 	}
 
@@ -73,6 +75,11 @@ public class Hotel {
 
 	public void setEmail(String email) {
 		this.email = email;
+	}
+
+	@Override
+	public String toString() {
+		return navn;
 	}
 
 }

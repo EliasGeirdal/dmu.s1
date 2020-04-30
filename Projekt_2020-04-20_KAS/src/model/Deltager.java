@@ -100,4 +100,13 @@ public class Deltager {
 		this.adresse = adresse;
 	}
 
+	@Override
+	public String toString() {
+		return fornavn + " " + efternavn;
+	}
+
+	public String toStringForHotel() {
+		return fornavn + " " + efternavn;
+	}
+
 }

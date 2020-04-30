@@ -5,12 +5,14 @@ public class Værelse {
 	private String type;
 	private double dagspris;
 	private int sengepladser;
+	private Hotel hotel;
 
-	public Værelse(String type, double pris, int sengepladser) {
+	public Værelse(String type, double pris, int sengepladser, Hotel hotel) {
 		super();
 		this.type = type;
 		this.dagspris = pris;
 		this.sengepladser = sengepladser;
+		setHotel(hotel);
 	}
 
 	public String getType() {
@@ -35,6 +37,14 @@ public class Værelse {
 
 	public void setSengepladser(int sengepladser) {
 		this.sengepladser = sengepladser;
+	}
+
+	public Hotel getHotel() {
+		return hotel;
+	}
+
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
 
 }

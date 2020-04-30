@@ -1,6 +1,6 @@
 package controller;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 import model.Deltager;
@@ -18,13 +18,26 @@ public class Controller {
 
 	// -------------tilmelding--------------------------------
 
-	public static Tilmelding createTilmelding(LocalDateTime ankomstDato, LocalDateTime afrejseDato,
-			boolean foredragsholder, Deltager deltager, Ledsager ledsager, Konference konference, Værelse værelse) {
+	public static Tilmelding createTilmelding(LocalDate ankomstDato, LocalDate afrejseDato, boolean foredragsholder,
+			Deltager deltager, Ledsager ledsager, Konference konference, Værelse værelse) {
 		Tilmelding tilmelding = new Tilmelding(ankomstDato, afrejseDato, foredragsholder, deltager, ledsager,
 				konference, værelse);
 		konference.addTilmelding(tilmelding);
 		deltager.addTilmelding(tilmelding);
 		Storage.addTilmelding(tilmelding);
+		return tilmelding;
+	}
+
+	public static Tilmelding getTilmeldingForKonference(Konference konference, Deltager deltager) {
+		Tilmelding tilmelding = null;
+
+		for (int i = 0; i < konference.getTilmeldinger().size(); i++) {
+			for (int j = 0; j < deltager.getTilmeldinger().size(); j++) {
+				if (konference.getTilmeldinger().get(i).equals(deltager.getTilmeldinger().get(j))) {
+					return konference.getTilmeldinger().get(i);
+				}
+			}
+		}
 		return tilmelding;
 	}
 
@@ -40,14 +53,14 @@ public class Controller {
 		return new ArrayList<>(Storage.getTilmeldinger());
 	}
 
-	public static void updateTilmelding(Tilmelding tilmelding, LocalDateTime ankomstDato, LocalDateTime afrejseDato) {
+	public static void updateTilmelding(Tilmelding tilmelding, LocalDate ankomstDato, LocalDate afrejseDato) {
 		tilmelding.setAfrejseDato(afrejseDato);
 		tilmelding.setAnkomstDato(ankomstDato);
 	}
 
 	// -------------konference--------------------------
-	public static Konference createKonference(String navn, String adresse, LocalDateTime startDato,
-			LocalDateTime slutDato, double pris) {
+	public static Konference createKonference(String navn, String adresse, LocalDate startDato, LocalDate slutDato,
+			double pris) {
 		Konference konference = new Konference(navn, adresse, startDato, slutDato, pris);
 		Storage.addKonference(konference);
 		return konference;
@@ -66,8 +79,8 @@ public class Controller {
 		return new ArrayList<>(Storage.getKonferencer());
 	}
 
-	public static void updateKonference(Konference konference, String navn, String adresse, LocalDateTime startDato,
-			LocalDateTime slutDato, double pris) {
+	public static void updateKonference(Konference konference, String navn, String adresse, LocalDate startDato,
+			LocalDate slutDato, double pris) {
 		konference.setAdresse(adresse);
 		konference.setNavn(navn);
 		konference.setSlutDato(slutDato);
@@ -121,6 +134,14 @@ public class Controller {
 		return deltager;
 	}
 
+	public static ArrayList<Deltager> getDeltagereForKonference(Konference konference) {
+		ArrayList<Deltager> deltagere = new ArrayList<>();
+		for (Tilmelding tilmelding : konference.getTilmeldinger()) {
+			deltagere.add(tilmelding.getDeltager());
+		}
+		return deltagere;
+	}
+
 	public static void deleteDeltager(Deltager deltager) {
 		Storage.removeDeltager(deltager);
 	}
@@ -136,6 +157,28 @@ public class Controller {
 		deltager.setFirma(firma);
 		deltager.setFornavn(fornavn);
 		deltager.setTlf(tlf);
+	}
+
+	public static ArrayList<Deltager> getDeltagereFromSpecificHotel(Hotel hotel) {
+		ArrayList<Deltager> deltagere = new ArrayList<>();
+
+		// iterates over all possible deltagere.
+		for (int i = 0; i < Storage.getDeltagere().size(); i++) {
+			// iterates over all possible tilmeldinger of the specific deltager
+			for (int j = 0; j < Storage.getDeltagere().get(i).getTilmeldinger().size(); j++) {
+				// iterates over alle possible hotel rooms of explicit parameter.
+				for (int j2 = 0; j2 < hotel.getVærelser().size(); j2++) {
+					// checks if the room of the explicit hotel parameter is the same as the room of
+					// the deltager in storage.
+					if (hotel.getVærelser().get(j2)
+							.equals(Storage.getDeltagere().get(i).getTilmeldinger().get(j).getVærelse())) {
+						// adds the new found deltager to our array list of deltagere
+						deltagere.add(Storage.getDeltagere().get(i));
+					}
+				}
+			}
+		}
+		return deltagere;
 	}
 
 	// ----------------ledsager---------------------
@@ -161,9 +204,23 @@ public class Controller {
 	// ---------------udflugt---------------------
 
 	public static Udflugt createUdflugt(String navn, String adresse, String beskrivelse, double pris,
-			LocalDateTime startDato, LocalDateTime slutDato, Konference konference) {
+			LocalDate startDato, LocalDate slutDato, Konference konference) {
 		Udflugt udflugt = konference.createUdflugt(navn, adresse, beskrivelse, pris, startDato, slutDato);
 		return udflugt;
+	}
+
+	public static void updateUdflugt(String navn, String adresse, String beskrivelse, double pris, LocalDate startDato,
+			LocalDate slutDato, Konference konference, Udflugt udflugt) {
+		udflugt.setNavn(navn);
+		udflugt.setAdresse(adresse);
+		udflugt.setBeskrivelse(beskrivelse);
+		udflugt.setPris(pris);
+		udflugt.setSlutDato(slutDato);
+		udflugt.setStartDato(startDato);
+	}
+
+	public static void deleteUdflugtFromKonference(Konference konference, Udflugt udflugt) {
+		konference.removeUdflugt(udflugt);
 	}
 
 	public static void addUdflugtToLedsager(Ledsager ledsager, Udflugt udflugt) {
@@ -198,17 +255,18 @@ public class Controller {
 		Hotel h3 = Controller.createHotel("Pension Tusindfryd", "Adresse", "60 60 60 60", "hotel@hotel.dk");
 
 		// start og slut dato for konferencen
-		LocalDateTime start = LocalDateTime.of(2020, 5, 18, 12, 00);
-		LocalDateTime slut = LocalDateTime.of(2020, 5, 20, 12, 00);
+		LocalDate start = LocalDate.of(2020, 5, 18);
+		LocalDate slut = LocalDate.of(2020, 5, 20);
 
 		// konference
 		Konference k1 = Controller.createKonference("Hav og himmel", "Adresse", start, slut, 1500);
+		Konference k2 = Controller.createKonference("TestKonference", "Adresse", start, slut, 1500);
 
 		// Udflugter til konferencen.
 		Udflugt byrundtur = Controller.createUdflugt("Byrundtur, Odense", "Adresse", "Beskrivelse", 125.00, start,
 				start, k1);
 		Udflugt egeskov = Controller.createUdflugt("Egeskov", "Adresse", "Beskrivelse", 75.00,
-				LocalDateTime.of(2020, 5, 19, 12, 00), LocalDateTime.of(2020, 5, 19, 12, 00), k1);
+				LocalDate.of(2020, 5, 19), LocalDate.of(2020, 5, 19), k1);
 		Udflugt trapholt = Controller.createUdflugt("Trapholt Museum, Kolding", "Adresse", "Beskrivelse", 200, slut,
 				slut, k1);
 

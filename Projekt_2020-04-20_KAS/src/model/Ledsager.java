@@ -7,6 +7,7 @@ public class Ledsager {
 	private String navn;
 	// instance variables.
 	private ArrayList<Udflugt> udflugter;
+	private Tilmelding tilmelding;
 
 	public Ledsager(String navn) {
 		// instance
@@ -57,4 +58,21 @@ public class Ledsager {
 		this.navn = navn;
 	}
 
+	public Tilmelding getTilmelding() {
+		return tilmelding;
+	}
+
+	public void setTilmelding(Tilmelding tilmelding) {
+		if (tilmelding != null) {
+			if (this.tilmelding != tilmelding) {
+				this.tilmelding = tilmelding;
+				tilmelding.setLedsager(this);
+			}
+		}
+	}
+
+	@Override
+	public String toString() {
+		return navn + "(" + tilmelding.getDeltager() + ")";
+	}
 }
