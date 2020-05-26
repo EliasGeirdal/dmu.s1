@@ -210,4 +210,9 @@ public class Tilmelding {
 		return foredragsholder;
 	}
 
+	@Override
+	public String toString() {
+		return "tilmelding (" + deltager.toString() + ")";
+	}
+
 }

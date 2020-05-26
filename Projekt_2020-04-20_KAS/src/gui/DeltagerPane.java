@@ -10,144 +10,93 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import model.Deltager;
-import model.Konference;
 
 public class DeltagerPane extends GridPane {
-	private TextField txfFornavn, txfEfternavn, txfTelefon, txfAdresse, txfHotel, txfAnkomst, txfAfrejse, txfLedsager;
+	private TextField txfFornavn, txfEfternavn, txfTelefon, txfAdresse, txfId;
 	private ListView<Deltager> lvwDeltagere;
-	private CheckBox chbForedragsholder;
-	private ComboBox<Konference> cbbKonferencer;
 
 	public DeltagerPane() {
 		this.setPadding(new Insets(20));
-		this.setHgap(50);
+		this.setHgap(20);
 		this.setVgap(10);
 		this.setGridLinesVisible(false);
 
-		Label lblVælgKonference = new Label("Vælg Konference");
-		this.add(lblVælgKonference, 0, 0);
-
-		cbbKonferencer = new ComboBox<Konference>();
-		this.add(cbbKonferencer, 0, 1);
-		cbbKonferencer.getItems().setAll(Controller.getKonferencer());
-		cbbKonferencer.setMaxWidth(250);
-		ChangeListener<Konference> listener = (ov, oldDeltager, newDeltager) -> this.selectedKonferenceChanged();
-		cbbKonferencer.getSelectionModel().selectedItemProperty().addListener(listener);
-
-		Label lblDeltagere = new Label("Deltagere");
-		this.add(lblDeltagere, 0, 2);
+		Label lblKonferencer = new Label("Deltagere");
+		lblKonferencer.setFont(Font.font(null, FontWeight.BOLD, 32));
+		this.add(lblKonferencer, 0, 0);
 
 		lvwDeltagere = new ListView<>();
-		this.add(lvwDeltagere, 0, 3, 1, 10);
-//		lvwDeltagere.getItems().setAll(Controller.getDeltagere());
+		this.add(lvwDeltagere, 0, 1, 1, 15);
+		lvwDeltagere.getItems().setAll(Controller.getDeltagere());
 
-		ChangeListener<Deltager> listenerDeltager = (ov, oldDeltager, newDeltager) -> this.selectedDeltagerChanged();
-		lvwDeltagere.getSelectionModel().selectedItemProperty().addListener(listenerDeltager);
-
-		// overskrift
-		Label lblOsDeltager = new Label("Deltageroplysninger");
-		this.add(lblOsDeltager, 1, 2);
+		ChangeListener<Deltager> listener = (ov, oldDeltager, newDeltager) -> this.selectedDeltagerChanged();
+		lvwDeltagere.getSelectionModel().selectedItemProperty().addListener(listener);
 
 		// fornavn
 		Label lblFornavn = new Label("Fornavn");
-		this.add(lblFornavn, 1, 3);
+		this.add(lblFornavn, 3, 1);
 
 		txfFornavn = new TextField();
-		this.add(txfFornavn, 1, 4);
+		this.add(txfFornavn, 3, 2);
 		txfFornavn.setEditable(false);
 
 		// efternavn
 		Label lblEfternavn = new Label("Efternavn");
-		this.add(lblEfternavn, 1, 5);
+		this.add(lblEfternavn, 3, 3);
 
 		txfEfternavn = new TextField();
-		this.add(txfEfternavn, 1, 6);
+		this.add(txfEfternavn, 3, 4);
 		txfEfternavn.setEditable(false);
 
-		// adresse
+		// Adresse
 		Label lblAdresse = new Label("Adresse");
-		this.add(lblAdresse, 1, 7);
+		this.add(lblAdresse, 3, 5);
 
 		txfAdresse = new TextField();
-		this.add(txfAdresse, 1, 8);
+		this.add(txfAdresse, 3, 6);
 		txfAdresse.setEditable(false);
 
-		// telefon
-		Label lblTelefon = new Label("Telefon nummer");
-		this.add(lblTelefon, 1, 9);
+		// Telefon
+		Label lblTelefon = new Label("Telefon");
+		this.add(lblTelefon, 3, 7);
 
 		txfTelefon = new TextField();
-		this.add(txfTelefon, 1, 10);
+		this.add(txfTelefon, 3, 8);
 		txfTelefon.setEditable(false);
 
-		// tilmeldingsoplysninger
-		Label lblTilmeldsoplysninger = new Label("Tilmeldingsoplysninger");
-		this.add(lblTilmeldsoplysninger, 2, 2);
+		// Id
+		Label lblId = new Label("Id");
+		this.add(lblId, 3, 9);
 
-		// ankomstdato
-		Label lblAnkomst = new Label("Ankomstdato");
-		this.add(lblAnkomst, 2, 3);
-
-		txfAnkomst = new TextField();
-		this.add(txfAnkomst, 2, 4);
-		txfAnkomst.setEditable(false);
-
-		// afrejsedato
-		Label lblAfrejse = new Label("Afrejsedato");
-		this.add(lblAfrejse, 2, 5);
-
-		txfAfrejse = new TextField();
-		this.add(txfAfrejse, 2, 6);
-		txfAfrejse.setEditable(false);
-
-		// foredragsholder
-		Label lblForedragsholder = new Label("Foredragsholder");
-		this.add(lblForedragsholder, 2, 7);
-
-		chbForedragsholder = new CheckBox();
-		this.add(chbForedragsholder, 2, 8);
-
-		// ledsager
-		Label lblLedsager = new Label("Ledsager");
-		this.add(lblLedsager, 2, 9);
-
-		txfLedsager = new TextField();
-		this.add(txfLedsager, 2, 10);
-		txfLedsager.setEditable(false);
-
-		// ledsager
-		Label lblHotel = new Label("Hotel");
-		this.add(lblHotel, 2, 11);
-
-		txfHotel = new TextField();
-		this.add(txfHotel, 2, 12);
-		txfHotel.setEditable(false);
+		txfId = new TextField();
+		this.add(txfId, 3, 10);
+		txfId.setEditable(false);
 
 		// Deltager knapper
-		HBox hbxDelButtons = new HBox(40);
-		this.add(hbxDelButtons, 0, 15, 3, 1);
-		hbxDelButtons.setPadding(new Insets(10, 0, 0, 0));
-		hbxDelButtons.setAlignment(Pos.BASELINE_LEFT);
+		HBox hbxKonfButtons = new HBox(40);
+		this.add(hbxKonfButtons, 0, 20, 3, 1);
+		hbxKonfButtons.setPadding(new Insets(10, 0, 0, 0));
+		hbxKonfButtons.setAlignment(Pos.BASELINE_LEFT);
 
-		Button btnCreate = new Button("Opret Deltager");
-		hbxDelButtons.getChildren().add(btnCreate);
-		btnCreate.setOnAction(event -> this.createAction());
+		Button btnOpret = new Button("Opret");
+		hbxKonfButtons.getChildren().add(btnOpret);
+		btnOpret.setOnAction(event -> this.createAction());
 
-		Button btnUpdate = new Button("Opdater deltager");
-		hbxDelButtons.getChildren().add(btnUpdate);
-		btnUpdate.setOnAction(event -> this.updateAction());
+		Button btnOpdater = new Button("Opdater");
+		hbxKonfButtons.getChildren().add(btnOpdater);
+		btnOpdater.setOnAction(event -> this.updateAction());
 
-		Button btnDelete = new Button("Slet Deltager");
-		hbxDelButtons.getChildren().add(btnDelete);
-		btnDelete.setOnAction(event -> this.deleteAction());
+		Button btnSlet = new Button("Slet");
+		hbxKonfButtons.getChildren().add(btnSlet);
+		btnSlet.setOnAction(event -> this.deleteAction());
 
 		if (lvwDeltagere.getItems().size() > 0) {
 			lvwDeltagere.getSelectionModel().select(0);
@@ -157,17 +106,30 @@ public class DeltagerPane extends GridPane {
 	// -------------------------------------------------------------------------
 
 	private void createAction() {
-//		KonferenceWindow dia = new KonferenceWindow("Opret konference");
-//		dia.showAndWait();
-//
-//		// Wait for the modal dialog to close
-//
-//		lvwKonferencer.getItems().setAll(controller.Controller.getKonferencer());
-//		int index = lvwKonferencer.getItems().size() - 1;
-//		lvwKonferencer.getSelectionModel().select(index);
+		DeltagerWindow dia = new DeltagerWindow("Opret Deltager");
+		dia.showAndWait();
+
+		// Wait for the modal dialog to close
+
+		lvwDeltagere.getItems().setAll(controller.Controller.getDeltagere());
+		int index = lvwDeltagere.getItems().size() - 1;
+		lvwDeltagere.getSelectionModel().select(index);
 	}
 
 	private void updateAction() {
+		Deltager deltager = lvwDeltagere.getSelectionModel().getSelectedItem();
+		if (deltager == null) {
+			return;
+		}
+
+		DeltagerWindow dia = new DeltagerWindow("Opdater Deltager", deltager);
+		dia.showAndWait();
+
+		// Wait for the modal dialog to close
+
+		int selectIndex = lvwDeltagere.getSelectionModel().getSelectedIndex();
+		lvwDeltagere.getItems().setAll(Controller.getDeltagere());
+		lvwDeltagere.getSelectionModel().select(selectIndex);
 	}
 
 	private void deleteAction() {
@@ -176,70 +138,37 @@ public class DeltagerPane extends GridPane {
 			return;
 		}
 
-		Konference konference = cbbKonferencer.getSelectionModel().getSelectedItem();
-		if (konference == null) {
-			return;
-		}
-
 		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Slet Konference");
+		alert.setTitle("Delete Deltager");
 		// alert.setContentText("Are you sure?");
-		alert.setHeaderText("Er du sikker?");
+		alert.setHeaderText("Er du sikker på, at du vil slette denne deltager?");
 		Optional<ButtonType> result = alert.showAndWait();
 		if ((result.isPresent()) && (result.get() == ButtonType.OK)) {
-			// deltager is attached to the konference through the tilmelding.
-			Controller.deleteTilmeldingFromKonference(Controller.getTilmeldingForKonference(konference, deltager),
-					konference);
-			lvwDeltagere.getItems().setAll(Controller.getDeltagereForKonference(konference));
+			Controller.deleteDeltager(deltager);
+			lvwDeltagere.getItems().setAll(Controller.getDeltagere());
 			this.updateControls();
 		}
 	}
 
 	// -------------------------------------------------------------------------
 
-	private void selectedKonferenceChanged() {
-		this.updateKonfControls();
-	}
-
-	private void updateKonfControls() {
-		Konference konf = cbbKonferencer.getSelectionModel().getSelectedItem();
-		lvwDeltagere.getItems().setAll(Controller.getDeltagereForKonference(konf));
-	}
-
 	private void selectedDeltagerChanged() {
 		this.updateControls();
 	}
 
 	public void updateControls() {
-		Konference konf = cbbKonferencer.getSelectionModel().getSelectedItem();
-		Deltager del = lvwDeltagere.getSelectionModel().getSelectedItem();
-		if (del != null) {
-			txfAdresse.setText(del.getAdresse());
-			txfFornavn.setText(del.getFornavn());
-			txfEfternavn.setText(del.getEfternavn());
-			txfTelefon.setText(del.getTlf());
-			txfAnkomst.setText(Controller.getTilmeldingForKonference(konf, del).getAnkomstDato().toString());
-			txfAfrejse.setText(Controller.getTilmeldingForKonference(konf, del).getAfrejseDato().toString());
-			if (Controller.getTilmeldingForKonference(konf, del).isForedragsholder()) {
-				chbForedragsholder.setSelected(true);
-			} else
-				chbForedragsholder.setSelected(false);
-			if (Controller.getTilmeldingForKonference(konf, del).getLedsager() != null) {
-				txfLedsager.setText(Controller.getTilmeldingForKonference(konf, del).getLedsager().getNavn());
-			} else
-				txfLedsager.setText(null);
-			if (Controller.getTilmeldingForKonference(konf, del).getVærelse() != null)
-				txfHotel.setText(Controller.getTilmeldingForKonference(konf, del).getVærelse().getHotel().toString());
-			else
-				txfHotel.setText(null);
+		Deltager deltager = lvwDeltagere.getSelectionModel().getSelectedItem();
+		if (deltager != null) {
+			txfFornavn.setText(deltager.getFornavn());
+			txfEfternavn.setText(deltager.getEfternavn());
+			txfAdresse.setText(deltager.getAdresse());
+			txfTelefon.setText(deltager.getTlf());
+			txfId.setText(deltager.getId() + "");
 		} else {
-			txfAdresse.setText(null);
-			txfFornavn.setText(null);
-			txfEfternavn.setText(null);
-			txfTelefon.setText(null);
-			txfAnkomst.setText(null);
-			txfAfrejse.setText(null);
-			chbForedragsholder.setSelected(false);
+			txfFornavn.clear();
+			txfEfternavn.clear();
+			txfAdresse.clear();
+			txfTelefon.clear();
 		}
 	}
 

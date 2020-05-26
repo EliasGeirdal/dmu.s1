@@ -45,8 +45,15 @@ public class Controller {
 		konference.removeTilmelding(tilmelding);
 	}
 
-	public static void deleteTilmelding(Tilmelding tilmelding) {
+	/**
+	 * removes tilmelding both from storage and associated konference
+	 * 
+	 * @param tilmelding
+	 * @param konference
+	 */
+	public static void deleteTilmelding(Tilmelding tilmelding, Konference konference) {
 		Storage.removeTilmelding(tilmelding);
+		konference.removeTilmelding(tilmelding);
 	}
 
 	public static ArrayList<Tilmelding> getTilmeldinger() {
@@ -93,6 +100,13 @@ public class Controller {
 		Hotel hotel = new Hotel(navn, adresse, tlf, email);
 		Storage.addHotel(hotel);
 		return hotel;
+	}
+
+	public static void updateHotel(Hotel hotel, String navn, String adresse, String tlf, String email) {
+		hotel.setAdresse(adresse);
+		hotel.setEmail(email);
+		hotel.setNavn(navn);
+		hotel.setTlf(tlf);
 	}
 
 	public static void deleteHotel(Hotel hotel) {
@@ -142,8 +156,17 @@ public class Controller {
 		return deltagere;
 	}
 
+	/**
+	 * Sletter en deltager.
+	 */
 	public static void deleteDeltager(Deltager deltager) {
 		Storage.removeDeltager(deltager);
+//        for (Tilmelding tilmelding : deltager.getTilmeldinger()) {
+//            Storage.removeTilmelding(tilmelding);
+//            deltager.removeTilmelding(tilmelding);
+//            Tilmelding tilmeldkonf = getTilmeldingForKonference(tilmelding.getKonference(), deltager);
+//            tilmelding.getKonference().removeTilmelding(tilmeldkonf);
+//        }
 	}
 
 	public static ArrayList<Deltager> getDeltagere() {

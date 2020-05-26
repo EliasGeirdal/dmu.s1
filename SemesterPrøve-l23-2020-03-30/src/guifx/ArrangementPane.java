@@ -62,6 +62,7 @@ public class ArrangementPane extends GridPane {
 		this.add(btnOpret, 1, 9);
 
 		btnOpret.setOnAction(event -> this.opretAction());
+
 	}
 
 	// -------------------------------------------------------------------------------------

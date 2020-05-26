@@ -49,19 +49,41 @@ public class MainApp extends Application {
 		tabKonference.setContent(konferencePane);
 		tabKonference.setOnSelectionChanged(event -> konferencePane.updateControls());
 
-		Tab tabDeltager = new Tab("Deltager");
-		tabPane.getTabs().add(tabDeltager);
+		Tab tabDeltageroplysninger = new Tab("Deltageroversigt");
+		tabPane.getTabs().add(tabDeltageroplysninger);
 
-		DeltagerPane deltagerPane = new DeltagerPane();
-		tabDeltager.setContent(deltagerPane);
-		tabDeltager.setOnSelectionChanged(event -> deltagerPane.updateControls());
+		DeltageroversigtPane deltageroplysningerPane = new DeltageroversigtPane();
+		tabDeltageroplysninger.setContent(deltageroplysningerPane);
+		tabDeltageroplysninger.setOnSelectionChanged(event -> deltageroplysningerPane.updateKonfControls());
 
-		Tab tabHotel = new Tab("Hotel");
+		Tab tabDeltagere = new Tab("Rediger Deltagere");
+		tabPane.getTabs().add(tabDeltagere);
+
+		DeltagerPane deltagerePane = new DeltagerPane();
+		tabDeltagere.setContent(deltagerePane);
+		tabDeltagere.setOnSelectionChanged(event -> deltagerePane.updateControls());
+
+		Tab tabHoteloplysninger = new Tab("hoteloversigt");
+		tabPane.getTabs().add(tabHoteloplysninger);
+
+		HoteloversigtPane hoteloplysningerPane = new HoteloversigtPane();
+		tabHoteloplysninger.setContent(hoteloplysningerPane);
+		tabHoteloplysninger.setOnSelectionChanged(event -> hoteloplysningerPane.updateControls());
+		tabHoteloplysninger.setOnSelectionChanged(event -> hoteloplysningerPane.updateHotelListView());
+
+		Tab tabHotel = new Tab("Rediger Hoteller");
 		tabPane.getTabs().add(tabHotel);
 
 		HotelPane hotelPane = new HotelPane();
 		tabHotel.setContent(hotelPane);
 		tabHotel.setOnSelectionChanged(event -> hotelPane.updateControls());
+
+		Tab tabTilmelding = new Tab("Tilmelding");
+		tabPane.getTabs().add(tabTilmelding);
+
+		TilmeldingPane tilmeldingPane = new TilmeldingPane();
+		tabTilmelding.setContent(tilmeldingPane);
+		tabTilmelding.setOnSelectionChanged(event -> tilmeldingPane.updateControls());
 
 	}
 
