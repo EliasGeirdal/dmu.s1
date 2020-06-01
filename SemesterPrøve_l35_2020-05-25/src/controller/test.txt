@@ -1,1 +1,1 @@
-[Parkeringsplads [nummer=11, bil=Bil [regNr=AB 11 222, bilmærke=null]], Parkeringsplads [nummer=21, bil=Bil [regNr=EF 33 444, bilmærke=null]], Parkeringsplads [nummer=31, bil=Bil [regNr=BD 55 666, bilmærke=null]]]
+[Plads 11: AB 11 222, BMW, Plads 21: EF 33 444, FORD, Plads 31: BD 55 666, VOLKSWAGEN]
