@@ -3,7 +3,6 @@ package guifx;
 import controller.Controller;
 import javafx.application.Application;
 import javafx.scene.Scene;
-import javafx.scene.control.Tab;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TabPane.TabClosingPolicy;
 import javafx.scene.layout.BorderPane;
@@ -32,19 +31,21 @@ public class MainApp extends Application {
 	}
 
 	private void initContent(BorderPane pane) {
-		TabPane tabPane = new TabPane();
-		this.initTabPane(tabPane);
-		pane.setCenter(tabPane);
+//		TabPane tabPane = new TabPane();
+		ParkeringshusPane parkeringshusPane = new ParkeringshusPane();
+
+//		this.initTabPane(tabPane);
+		pane.setCenter(parkeringshusPane);
 	}
 
 	private void initTabPane(TabPane tabPane) {
 		tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 
-		Tab tabParkeringshuseOgPladser = new Tab("Parkeringshuse og pladser");
-		tabPane.getTabs().add(tabParkeringshuseOgPladser);
-
-		ParkeringshusPane parkeringshusPane = new ParkeringshusPane();
-		tabParkeringshuseOgPladser.setContent(parkeringshusPane);
+//		Tab tabParkeringshuseOgPladser = new Tab("Parkeringshuse og pladser");
+//		tabPane.getTabs().add(tabParkeringshuseOgPladser);
+//
+//		ParkeringshusPane parkeringshusPane = new ParkeringshusPane();
+//		tabParkeringshuseOgPladser.setContent(parkeringshusPane);
 
 	}
 }

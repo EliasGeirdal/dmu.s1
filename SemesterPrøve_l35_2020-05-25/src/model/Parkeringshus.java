@@ -38,7 +38,7 @@ public class Parkeringshus {
 	public int findAntalBiler(Bilmærke bilmærke) {
 		int count = 0;
 		for (Parkeringsplads parkeringsplads : parkeringspladser) {
-			if (parkeringsplads.getBil().getBilmærke().equals(bilmærke)) {
+			if (parkeringsplads.getBil() != null && parkeringsplads.getBil().getBilmærke().equals(bilmærke)) {
 				count++;
 			}
 		}
@@ -55,7 +55,7 @@ public class Parkeringshus {
 		int i = 0;
 		while (i < parkeringspladser.size()) {
 			Parkeringsplads p = parkeringspladser.get(i);
-			if (p.getBil().getRegNr().equals(regNummer)) {
+			if (p.getBil() != null && p.getBil().getRegNr().equals(regNummer)) { // tilføjet p.getbil()
 				return parkeringspladser.get(i).getNummer();
 			}
 			i++;

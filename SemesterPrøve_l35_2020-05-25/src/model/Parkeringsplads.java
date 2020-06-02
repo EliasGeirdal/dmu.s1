@@ -21,7 +21,7 @@ public class Parkeringsplads {
 	 * 
 	 * @param nummer pladsnummer.
 	 */
-	public Parkeringsplads(int nummer) {
+	public Parkeringsplads(int nummer) { //
 		super();
 		this.nummer = nummer;
 		this.ankomst = null;
@@ -48,7 +48,7 @@ public class Parkeringsplads {
 	public double beregnPris(LocalTime afgangstidspunkt) {
 		double pris = -1;
 		if (!bil.equals(null)) {
-			long minutesBetween = ChronoUnit.DAYS.between(ankomst, afgangstidspunkt);
+			long minutesBetween = ChronoUnit.MINUTES.between(ankomst, afgangstidspunkt);
 			pris = (minutesBetween / 10) * PRIS_PR_10_MIN;
 		}
 		return pris;
@@ -72,6 +72,7 @@ public class Parkeringsplads {
 	 */
 	public void setParkeringshus(Parkeringshus parkeringshus) {
 		if (this.parkeringshus != parkeringshus) {
+			// TODO
 			Parkeringshus oldPhus = this.parkeringshus;
 			if (oldPhus != null) {
 				oldPhus.removeParkeringsplads(this);

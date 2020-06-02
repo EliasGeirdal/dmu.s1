@@ -2,12 +2,13 @@ package opgave5;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Scanner;
 
 public class MainApp {
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) throws IOException, FileNotFoundException {
 		// TODO Auto-generated method stub
 
 //		MainApp.fletAlleHeltal("C:\\Users\\elgei\\eclipse-workspace\\2020-05-20_l34-Fletning\\src\\opgave5\\talfil1",
@@ -28,7 +29,7 @@ public class MainApp {
 	 * @throws FileNotFoundException
 	 */
 	public static void fletAlleHeltal(String fileName1, String fileName2, String fileNameNy)
-			throws FileNotFoundException {
+			throws FileNotFoundException, IOException {
 		// create a scanner for each document.
 		Scanner scan1 = new Scanner(new File(fileName1));
 		Scanner scan2 = new Scanner(new File(fileName2));
@@ -62,13 +63,13 @@ public class MainApp {
 			i2 = scan2.nextInt();
 		}
 		// print last elements.
-		if (i1 < i2) {
-			pw.println(i1);
-			pw.println(i2);
-		} else {
-			pw.println(i2);
-			pw.println(i1);
-		}
+//		if (i1 < i2) {
+//			pw.println(i1);
+//			pw.println(i2);
+//		} else {
+//			pw.println(i2);
+//			pw.println(i1);
+//		}
 
 		scan1.close();
 		scan2.close();

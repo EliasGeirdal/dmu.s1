@@ -59,6 +59,11 @@ public class ParkeringshusPane extends GridPane {
 		lblError = new Label();
 		this.add(lblError, 0, 4);
 		lblError.setStyle("-fx-text-fill: red");
+
+		// remember this code.
+		if (lvwParkeringshuse.getItems().size() > 0) {
+			lvwParkeringshuse.getSelectionModel().select(0);
+		}
 	}
 
 	// -------------------------------------------------------------------------------------

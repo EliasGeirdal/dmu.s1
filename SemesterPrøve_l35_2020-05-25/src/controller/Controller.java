@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
@@ -67,7 +68,7 @@ public class Controller {
 	 * @param filnavn name of file.
 	 * @throws FileNotFoundException
 	 */
-	public static void writeOptagnePladser(Parkeringshus hus, String filnavn) throws FileNotFoundException {
+	public static void writeOptagnePladser(Parkeringshus hus, String filnavn) throws IOException {
 		File file = new File(filnavn);
 		try (PrintWriter pw = new PrintWriter(file)) {
 			pw.println(hus.optagnePladser());
@@ -78,9 +79,9 @@ public class Controller {
 	 * Initial content.
 	 */
 	public static void createSomeObjects() {
-		Bil b1 = Controller.createBil("AB 11 222");
-		Bil b2 = Controller.createBil("EF 33 444");
-		Bil b3 = Controller.createBil("BD 55 666");
+		Bil b1 = createBil("AB 11 222");
+		Bil b2 = createBil("EF 33 444");
+		Bil b3 = createBil("BD 55 666");
 
 		b1.setBilmærke(Bilmærke.BMW);
 		b2.setBilmærke(Bilmærke.FORD);
