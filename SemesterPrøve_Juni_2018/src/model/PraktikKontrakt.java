@@ -67,7 +67,7 @@ public class PraktikKontrakt implements Comparable<PraktikKontrakt> {
 	@Override
 	public String toString() {
 		return "PraktikKontrakt [opgavebeskrivelse=" + opgavebeskrivelse + ", timerPerUge=" + timerPerUge
-				+ ", periodeStart=" + periodeStart + ", periodeSlut=" + periodeSlut + "]";
+				+ ", periodeStart=" + periodeStart + ", periodeSlut=" + periodeSlut + "]\n";
 	}
 
 	@Override
@@ -77,7 +77,7 @@ public class PraktikKontrakt implements Comparable<PraktikKontrakt> {
 			return -1;
 		} else if (this.periodeStart.isAfter(o.periodeStart)) {
 			return 1;
-		} else if (this.periodeStart == o.periodeStart) {
+		} else if (this.periodeStart.equals(o.periodeStart)) {
 			return opgavebeskrivelse.compareTo(o.opgavebeskrivelse);
 		}
 		return 0;

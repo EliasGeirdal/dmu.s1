@@ -40,11 +40,11 @@ public class MainApp extends Application {
 	private void initTabPane(TabPane tabPane) {
 		tabPane.setTabClosingPolicy(TabClosingPolicy.UNAVAILABLE);
 
-		Tab tabForestilling = new Tab("Forestilling");
-		tabPane.getTabs().add(tabForestilling);
+		Tab tabPraktikVirksomheder = new Tab("Administration af praktikvirksomheder");
+		tabPane.getTabs().add(tabPraktikVirksomheder);
 
-		ForestillingPane forestillingPane = new ForestillingPane();
-		tabForestilling.setContent(forestillingPane);
+		PraktikVirksomhedPane praktikVirksomhedPane = new PraktikVirksomhedPane();
+		tabPraktikVirksomheder.setContent(praktikVirksomhedPane);
 
 	}
 }

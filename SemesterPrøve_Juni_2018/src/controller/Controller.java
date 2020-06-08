@@ -32,6 +32,24 @@ public class Controller {
 		kontrakt.setPraktikVirksomhed(virksomhed);
 	}
 
+	public static String getEftertragtetSemesterVirksomhed(int semester) {
+		String navn = "";
+		int max = Integer.MIN_VALUE;
+		for (PraktikVirksomhed virksomhed : Storage.getPraktikVirksomheder()) {
+			int count = 0;
+			for (PraktikOpgave opgave : virksomhed.getPraktikOpgaver()) {
+				if (opgave.getSemester() == semester) {
+					count++;
+				}
+			}
+			if (count > max) {
+				max = count;
+				navn = virksomhed.getNavn();
+			}
+		}
+		return navn;
+	}
+
 	// -----------------------------PraktikKontrakt------------------------------
 	public static PraktikKontrakt createPraktikKontrakt(String opgavebeskrivelse, int timerPerUge,
 			LocalDate periodeStart, LocalDate periodeSlut) {

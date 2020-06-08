@@ -43,8 +43,7 @@ public class PraktikVirksomhed {
 		return sum;
 	}
 
-	public ArrayList<PraktikKontrakt> soterKontraker() {
-		ArrayList<PraktikKontrakt> kontrakter = new ArrayList<>();
+	public ArrayList<PraktikKontrakt> sorterKontrakter() {
 		for (int index = 1; index < praktikKontrakter.size(); index++) {
 			Comparable<PraktikKontrakt> key = praktikKontrakter.get(index);
 			int position = index;
@@ -56,11 +55,11 @@ public class PraktikVirksomhed {
 			}
 			praktikKontrakter.set(position, (PraktikKontrakt) key);
 		}
-		return new ArrayList<>(kontrakter);
+		return new ArrayList<>(praktikKontrakter);
 	}
 
 	public void skrivTilFilKontrakter() throws FileNotFoundException {
-		try (PrintWriter pw = new PrintWriter(new File(this.navn))) {
+		try (PrintWriter pw = new PrintWriter(new File("src\\model\\" + this.navn + ".txt"))) {
 			for (PraktikKontrakt praktikKontrakt : praktikKontrakter) {
 				pw.println(praktikKontrakt);
 			}
@@ -125,6 +124,10 @@ public class PraktikVirksomhed {
 
 	public ArrayList<PraktikKontrakt> getPraktikKontrakter() {
 		return new ArrayList<>(praktikKontrakter);
+	}
+
+	public ArrayList<PraktikOpgave> getPraktikOpgaver() {
+		return new ArrayList<>(praktikOpgaver);
 	}
 
 	@Override

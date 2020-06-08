@@ -1,0 +1,6 @@
+PraktikKontrakt [opgavebeskrivelse=Tester, timerPerUge=37, periodeStart=2018-07-01, periodeSlut=2018-09-16]
+
+PraktikKontrakt [opgavebeskrivelse=Programmør, timerPerUge=15, periodeStart=2018-02-14, periodeSlut=2018-06-06]
+
+PraktikKontrakt [opgavebeskrivelse=Analytiker, timerPerUge=12, periodeStart=2018-02-14, periodeSlut=2018-04-06]
+
