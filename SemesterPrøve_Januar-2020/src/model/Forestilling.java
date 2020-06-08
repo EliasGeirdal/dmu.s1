@@ -18,14 +18,11 @@ public class Forestilling {
 	}
 
 	public boolean erPladsLedig(int række, int nummer, LocalDate dato) {
-		int i = 0;
-		while (i < bestillinger.size()) {
-			for (Bestilling bestilling : bestillinger) {
-				if (bestilling.getDato() == dato) {
-					for (Plads plads : bestilling.getPladser()) {
-						if (plads.getRække() == række && plads.getNr() == nummer) {
-							return false;
-						}
+		for (Bestilling bestilling : bestillinger) {
+			if (bestilling.getDato() == dato) {
+				for (Plads plads : bestilling.getPladser()) {
+					if (plads.getRække() == række && plads.getNr() == nummer) {
+						return false;
 					}
 				}
 			}
@@ -45,6 +42,7 @@ public class Forestilling {
 			for (Bestilling bestilling : bestillinger) {
 				if (antalBestiltePladserPåDag(bestilling.getDato()) >= max) {
 					date = bestilling.getDato();
+					max = antalBestiltePladserPåDag(bestilling.getDato());
 				}
 			}
 			return date;
@@ -57,12 +55,8 @@ public class Forestilling {
 		int antal = 0;
 		for (Bestilling bestilling : bestillinger) {
 			if (bestilling.getDato().equals(dag)) {
-				antal++;
+				antal += bestilling.getPladser().size();
 			}
-			// If .equals doesnt work use this.
-//			if (bestilling.getDato() == dag) {
-//				antal++;
-//			}
 		}
 		return antal;
 	}

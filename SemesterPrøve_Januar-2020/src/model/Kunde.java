@@ -5,13 +5,11 @@ import java.util.ArrayList;
 
 public class Kunde {
 	private String navn, mobil;
-	private ArrayList<Bestilling> bestillinger;
+	private ArrayList<Bestilling> bestillinger = new ArrayList<Bestilling>();
 
 	public Kunde(String navn, String mobil) {
-		super();
 		this.navn = navn;
 		this.mobil = mobil;
-		bestillinger = new ArrayList<Bestilling>();
 	}
 
 	@Override
@@ -19,10 +17,11 @@ public class Kunde {
 		return "Kunde [navn=" + navn + "]";
 	}
 
+	// Brug isEqual til at sammenligne datoer.
 	public ArrayList<Plads> bestiltePladserTilForestillingPådag(Forestilling forestilling, LocalDate dato) {
 		ArrayList<Plads> pladser = new ArrayList<>();
 		for (Bestilling bestilling : bestillinger) {
-			if (bestilling.getForestilling() == forestilling && bestilling.getDato() == dato) {
+			if (bestilling.getForestilling() == forestilling && bestilling.getDato().isEqual(dato)) {
 				for (int i = 0; i < bestilling.getPladser().size(); i++) {
 					pladser.add(bestilling.getPladser().get(i));
 				}
@@ -32,7 +31,8 @@ public class Kunde {
 	}
 
 	public void addBestilling(Bestilling bestilling) {
-		bestillinger.add(bestilling);
+		if (!this.bestillinger.contains(bestilling))
+			bestillinger.add(bestilling);
 	}
 
 	public String getNavn() {
@@ -52,7 +52,7 @@ public class Kunde {
 	}
 
 	public ArrayList<Bestilling> getBestillinger() {
-		return bestillinger;
+		return new ArrayList<>(bestillinger);
 	}
 
 }

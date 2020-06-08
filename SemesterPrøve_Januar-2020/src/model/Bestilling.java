@@ -9,7 +9,7 @@ public class Bestilling {
 	private Kunde kunde;
 	private ArrayList<Plads> pladser = new ArrayList<>();
 
-	public Bestilling(Forestilling forestilling, LocalDate dato, Kunde kunde) {
+	Bestilling(Forestilling forestilling, LocalDate dato, Kunde kunde) {
 		this.forestilling = forestilling;
 		this.kunde = kunde;
 		this.dato = dato;
@@ -28,11 +28,11 @@ public class Bestilling {
 		return "Bestilling [dato=" + dato + ", pladser=" + pladser + "]";
 	}
 
-	public Plads createPlads(int række, int nr, int pris) {
-		Plads plads = new Plads(række, nr, pris);
-		pladser.add(plads);
-		return plads;
-	}
+//	public Plads createPlads(int række, int nr, int pris) {
+//		Plads plads = new Plads(række, nr, pris);
+//		pladser.add(plads);
+//		return plads;
+//	}
 
 	public void addPlads(Plads plads) {
 		if (!pladser.contains(plads))
@@ -56,6 +56,6 @@ public class Bestilling {
 	}
 
 	public ArrayList<Plads> getPladser() {
-		return pladser;
+		return new ArrayList<>(pladser);
 	}
 }

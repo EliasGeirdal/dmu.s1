@@ -133,6 +133,7 @@ public class ForestillingPane extends GridPane {
 		int day = Integer.parseInt(s[2]);
 		lvwPladser.getItems()
 				.setAll(Controller.getPladserForDateAndKunde(LocalDate.of(year, month, day), forestilling, kunde));
+
 	}
 
 }

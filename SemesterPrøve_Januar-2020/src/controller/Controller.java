@@ -47,7 +47,7 @@ public class Controller {
 			for (Bestilling bestilling1 : kunde.getBestillinger()) {
 				if (bestilling1.equals(bestilling)) {
 					for (Plads plads : bestilling.getPladser()) {
-						if (bestilling.getDato().equals(dato)) {
+						if (bestilling.getDato().isEqual(dato)) {
 							pladser.add(plads);
 						}
 					}
@@ -68,6 +68,9 @@ public class Controller {
 	public static Bestilling opretBestillingMedPladser(Forestilling forestilling, Kunde kunde, LocalDate dato,
 			ArrayList<Plads> pladser) {
 		try {
+
+			// try something else than this.
+
 			// Check if the date is correct.
 			boolean correct = false;
 			// amount of days between start and end of forestilling.
@@ -85,7 +88,6 @@ public class Controller {
 				throw new RuntimeException("Forkert dato.");
 			}
 			// check if the seat is available, if it isnt throw a runtime exception.
-			Bestilling bestilling;
 			for (Plads plads : pladser) {
 				if (!forestilling.erPladsLedig(plads.getRække(), plads.getNr(), dato)) {
 					throw new RuntimeException("En af pladserne er optaget.");
@@ -94,7 +96,7 @@ public class Controller {
 				}
 			}
 		} catch (RuntimeException e) {
-			throw new RuntimeException("Forkert dato");
+			throw new RuntimeException("Fejl. Try again, fool.");
 		}
 		return null;
 	}
