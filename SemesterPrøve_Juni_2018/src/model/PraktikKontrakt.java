@@ -73,13 +73,19 @@ public class PraktikKontrakt implements Comparable<PraktikKontrakt> {
 	@Override
 	public int compareTo(PraktikKontrakt o) {
 		// TODO Auto-generated method stub
-		if (this.periodeStart.isBefore(o.periodeStart)) {
-			return -1;
-		} else if (this.periodeStart.isAfter(o.periodeStart)) {
-			return 1;
-		} else if (this.periodeStart.equals(o.periodeStart)) {
-			return opgavebeskrivelse.compareTo(o.opgavebeskrivelse);
+		int cmp = periodeStart.compareTo(o.getPeriodeStart());
+		if (cmp == 0) {
+			cmp = opgavebeskrivelse.compareTo(o.opgavebeskrivelse);
 		}
-		return 0;
+		return cmp;
+
+//		if (this.periodeStart.isBefore(o.periodeStart)) {
+//			return -1;
+//		} else if (this.periodeStart.isAfter(o.periodeStart)) {
+//			return 1;
+//		} else if (this.periodeStart.equals(o.periodeStart)) {
+//			return opgavebeskrivelse.compareTo(o.opgavebeskrivelse);
+//		}
+//		return 0;
 	}
 }

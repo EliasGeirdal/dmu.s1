@@ -1,10 +1,10 @@
 package model;
 
-public class PraktikOpgave {
+public abstract class PraktikOpgave {
 	private String navn;
 	private int semester;
 
-	public PraktikOpgave(String navn, int semester, PraktikVirksomhed praktikVirksomhed) {
+	public PraktikOpgave(String navn, int semester) {
 		this.navn = navn;
 		this.semester = semester;
 	}

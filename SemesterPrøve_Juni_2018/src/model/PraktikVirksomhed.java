@@ -9,8 +9,8 @@ import java.util.ArrayList;
 
 public class PraktikVirksomhed {
 	private String navn, feedback, kontaktperson;
-	private ArrayList<PraktikKontrakt> praktikKontrakter = new ArrayList<>();
-	private ArrayList<PraktikOpgave> praktikOpgaver = new ArrayList<>();
+	private final ArrayList<PraktikKontrakt> praktikKontrakter = new ArrayList<>();
+	private final ArrayList<PraktikOpgave> praktikOpgaver = new ArrayList<>();
 
 	public PraktikVirksomhed(String navn, String feedback, String kontaktperson) {
 		this.navn = navn;
@@ -34,6 +34,7 @@ public class PraktikVirksomhed {
 	public int getTotalAntalUgentligeTimerIPeriode(LocalDate start, LocalDate slut) {
 		int sum = 0;
 		for (PraktikKontrakt praktikKontrakt : praktikKontrakter) {
+			// Use compareTo in the following.
 			if (praktikKontrakt.getPeriodeStart().isAfter(start) && praktikKontrakt.getPeriodeSlut().isBefore(slut)) {
 				long antalUger = ChronoUnit.WEEKS.between(praktikKontrakt.getPeriodeStart(),
 						praktikKontrakt.getPeriodeSlut());
@@ -68,20 +69,14 @@ public class PraktikVirksomhed {
 
 	// -----------------------sammenhænge------------------------------
 
-	public PraktikOpgave createPraktikOpgave(String navn, int semester) {
-		PraktikOpgave praktikOpgave = new PraktikOpgave(navn, semester, this);
-		praktikOpgaver.add(praktikOpgave);
-		return praktikOpgave;
-	}
-
 	public AnalyseOpgave createAnalyseOpgave(String navn, int semester, String analyseModel) {
-		AnalyseOpgave analyseOpgave = new AnalyseOpgave(navn, semester, this, analyseModel);
+		AnalyseOpgave analyseOpgave = new AnalyseOpgave(navn, semester, analyseModel);
 		praktikOpgaver.add(analyseOpgave);
 		return analyseOpgave;
 	}
 
 	public TekniskOpgave createTekniskOpgave(String navn, int semester, String programmeringsSprog) {
-		TekniskOpgave tekniskOpgave = new TekniskOpgave(navn, semester, this, programmeringsSprog);
+		TekniskOpgave tekniskOpgave = new TekniskOpgave(navn, semester, programmeringsSprog);
 		praktikOpgaver.add(tekniskOpgave);
 		return tekniskOpgave;
 	}
@@ -89,12 +84,14 @@ public class PraktikVirksomhed {
 	public void addPraktikKontrakt(PraktikKontrakt praktikKontrakt) {
 		if (!praktikKontrakter.contains(praktikKontrakt)) {
 			praktikKontrakter.add(praktikKontrakt);
+			praktikKontrakt.setPraktikVirksomhed(this); // remember this!!
 		}
 	}
 
 	public void removePraktikKontrakt(PraktikKontrakt praktikKontrakt) {
 		if (praktikKontrakter.contains(praktikKontrakt)) {
 			praktikKontrakter.remove(praktikKontrakt);
+			praktikKontrakt.setPraktikVirksomhed(null); // remember this!!
 		}
 	}
 

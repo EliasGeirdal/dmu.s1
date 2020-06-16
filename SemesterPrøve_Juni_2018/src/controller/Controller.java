@@ -35,6 +35,7 @@ public class Controller {
 	public static String getEftertragtetSemesterVirksomhed(int semester) {
 		String navn = "";
 		int max = Integer.MIN_VALUE;
+
 		for (PraktikVirksomhed virksomhed : Storage.getPraktikVirksomheder()) {
 			int count = 0;
 			for (PraktikOpgave opgave : virksomhed.getPraktikOpgaver()) {
@@ -64,8 +65,15 @@ public class Controller {
 	}
 
 	// ----------------------------PraktikOpgave-----------------------------------
-	public static PraktikOpgave createPraktikOpgave(String navn, int semester, PraktikVirksomhed praktikVirksomhed) {
-		PraktikOpgave praktikOpgave = praktikVirksomhed.createPraktikOpgave(navn, semester);
+	public static PraktikOpgave createAnalyseOpgave(PraktikVirksomhed praktikVirksomhed, String navn, int semester,
+			String analyseModel) {
+		PraktikOpgave praktikOpgave = praktikVirksomhed.createAnalyseOpgave(navn, semester, analyseModel);
+		return praktikOpgave;
+	}
+
+	public static PraktikOpgave createTekniskOpgave(PraktikVirksomhed praktikVirksomhed, String navn, int semester,
+			String programmeringsSprog) {
+		PraktikOpgave praktikOpgave = praktikVirksomhed.createTekniskOpgave(navn, semester, programmeringsSprog);
 		return praktikOpgave;
 	}
 

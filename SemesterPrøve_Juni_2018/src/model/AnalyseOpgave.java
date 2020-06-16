@@ -4,8 +4,8 @@ public class AnalyseOpgave extends PraktikOpgave {
 
 	private String analyseModel;
 
-	public AnalyseOpgave(String navn, int semester, PraktikVirksomhed praktikVirksomhed, String analyseModel) {
-		super(navn, semester, praktikVirksomhed);
+	public AnalyseOpgave(String navn, int semester, String analyseModel) {
+		super(navn, semester);
 		this.analyseModel = analyseModel;
 	}
 

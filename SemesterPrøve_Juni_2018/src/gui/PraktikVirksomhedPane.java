@@ -78,9 +78,11 @@ public class PraktikVirksomhedPane extends GridPane {
 	public void selectedVirksomhedChanged() {
 		// TODO
 		PraktikVirksomhed praktikVirksomhed = lvwPraktikVirksomheder.getSelectionModel().getSelectedItem();
-		txfFeedback.setText(praktikVirksomhed.getFeedback());
-		txfNavn.setText(praktikVirksomhed.getNavn());
-		txfKontakt.setText(praktikVirksomhed.getKontaktperson());
+		if (praktikVirksomhed != null) {
+			txfFeedback.setText(praktikVirksomhed.getFeedback());
+			txfNavn.setText(praktikVirksomhed.getNavn());
+			txfKontakt.setText(praktikVirksomhed.getKontaktperson());
+		}
 	}
 
 	public void addAction() {

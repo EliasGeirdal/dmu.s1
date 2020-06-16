@@ -57,11 +57,12 @@ public class Controller {
 		return pladser;
 	}
 
-	public static void oversigtOverForestillinger(String filnavn) throws FileNotFoundException {
+	public static void oversigtOverForestillinger(String filnavn) throws FileNotFoundException, IOException {
 		try (PrintWriter pw = new PrintWriter(new File(filnavn))) {
 			pw.println(Storage.getForestillinger());
 		} catch (IOException e) {
 			e.printStackTrace();
+			throw new IOException();
 		}
 	}
 

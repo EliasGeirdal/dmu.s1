@@ -3,8 +3,8 @@ package model;
 public class TekniskOpgave extends PraktikOpgave {
 	private String programmeringsSprog;
 
-	public TekniskOpgave(String navn, int semester, PraktikVirksomhed praktikVirksomhed, String programmeringsSprog) {
-		super(navn, semester, praktikVirksomhed);
+	public TekniskOpgave(String navn, int semester, String programmeringsSprog) {
+		super(navn, semester);
 		this.programmeringsSprog = programmeringsSprog;
 	}
 
