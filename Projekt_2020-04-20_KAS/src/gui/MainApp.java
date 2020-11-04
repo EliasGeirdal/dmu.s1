@@ -84,7 +84,6 @@ public class MainApp extends Application {
 		TilmeldingPane tilmeldingPane = new TilmeldingPane();
 		tabTilmelding.setContent(tilmeldingPane);
 		tabTilmelding.setOnSelectionChanged(event -> tilmeldingPane.updateControls());
-
 	}
 
 }

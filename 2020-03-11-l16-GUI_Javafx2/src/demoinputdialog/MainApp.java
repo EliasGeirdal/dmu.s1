@@ -14,7 +14,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
 public class MainApp extends Application {
-	// private InputDialog dialog;
+	private InputDialog dialog;
 
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -37,7 +37,7 @@ public class MainApp extends Application {
 	private final TextArea txaDescription = new TextArea();
 
 	private void initContent(GridPane pane) {
-		// pane.setGridLinesVisible(true);
+//		pane.setGridLinesVisible(true);
 		pane.setPadding(new Insets(20));
 		pane.setHgap(20);
 		pane.setVgap(10);
@@ -62,7 +62,7 @@ public class MainApp extends Application {
 		Dialog<String> dialog = new TextInputDialog();
 		dialog.setTitle("Input text");
 		dialog.setHeaderText("Enter some text:");
-
+		 
 		Optional<String> result = dialog.showAndWait();
 
 		// wait for the modal dialog to close
